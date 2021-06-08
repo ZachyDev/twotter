@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    {{ user.username }} - {{ firstName }} 
+    {{ user.username }} - {{ fullName }} 
     <strong>followers: </strong>  {{ followers }} 
     <button @click="followUser">Follow</button>
   </div>
@@ -21,8 +21,15 @@
         }
       }
     },
+    watch: {
+      followers(newFollowerCount,oldFollowerCount) {
+          if(newFollowerCount > oldFollowerCount) {
+            console.log('Zachary has gained a new follower!');
+          }
+      }
+    },
     computed: {
-      firstName() {
+      fullName() {
         return `${this.user.firstName} ${this.user.lastName}`
       }
     },
@@ -45,11 +52,5 @@ font-family: Avenir, Arial, Helvetica, sans-serif;
   text-align: center;
   margin-top: 20px;
 }
-button {
-width: 100px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin-left: 750px;
-}
+
 </style>
