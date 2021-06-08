@@ -30,6 +30,9 @@
       followUser() {
         this.followers += 1;
       }
+    },
+    mounted() {
+      this.followUser();
     }
   }
 </script>
