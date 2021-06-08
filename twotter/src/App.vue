@@ -1,27 +1,36 @@
 <template>
   <div id="app">
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Twotter"/>
+    {{ user.username }} - {{ firstName }}
   </div>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue';
-
   export default {
-    name: 'App',
-    components: {
-      HelloWorld
+    data() {
+      return {
+        followers: 0,
+        user: {
+          id: 1,
+          username: 'realZachy',
+          firstName: 'Zachary',
+          lastName: 'Moseti',
+          email: 'zachy@gmail.com',
+          isAdmin: true
+        }
+      }
+    },
+    computed: {
+      firstName() {
+        return `${this.user.firstName} ${this.user.lastName}`
+      }
     }
   }
 </script>
-<style>
+
+<style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+font-family: Avenir, Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
 }
 </style>
