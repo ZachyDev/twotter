@@ -1,27 +1,56 @@
 <template>
   <div id="app">
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Twotter"/>
+    {{ user.username }} - {{ fullName }} 
+    <strong>followers: </strong>  {{ followers }} 
+    <button @click="followUser">Follow</button>
   </div>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue';
-
   export default {
-    name: 'App',
-    components: {
-      HelloWorld
+    data() {
+      return {
+        followers: 0,
+        user: {
+          id: 1,
+          username: 'realZachy',
+          firstName: 'Zachary',
+          lastName: 'Moseti',
+          email: 'zachy@gmail.com',
+          isAdmin: true
+        }
+      }
+    },
+    watch: {
+      followers(newFollowerCount,oldFollowerCount) {
+          if(newFollowerCount > oldFollowerCount) {
+            console.log('Zachary has gained a new follower!');
+          }
+      }
+    },
+    computed: {
+      fullName() {
+        return `${this.user.firstName} ${this.user.lastName}`
+      }
+    },
+    methods: {
+      followUser() {
+        this.followers += 1;
+      }
+    },
+    mounted() {
+      this.followUser();
     }
   }
 </script>
-<style>
+
+<style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+font-family: Avenir, Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
+
 </style>
